@@ -2,15 +2,12 @@ package cz.luky.wlg.controller;
 
 import cz.luky.wlg.model.PlantAction;
 import cz.luky.wlg.service.PlantActionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/plants")
 public class PlantActionControllerApi {
 
     private final PlantActionService plantActionService;
@@ -19,18 +16,16 @@ public class PlantActionControllerApi {
         this.plantActionService = plantActionService;
     }
 
-    @GetMapping("/plantaction/{plantId}")
+    @GetMapping("/{plantId}/actions")
     public List<PlantAction> getActionsForPlant(@PathVariable Long plantId) {
 
         return plantActionService.getActionsForPlant(plantId);
     }
 
     //TODO cleanup
-    @GetMapping("/plantactionall/{plantId}")
-    public List<PlantAction> getActionsForPlants(@PathVariable Long plantId) {
+    @GetMapping("/plant-actions")
+    public List<PlantAction> getActionsForPlants(@RequestParam(defaultValue = "1, 2, 3") List<Long> plantIds) {
 
-        List<Long> ids = List.of(1L,2L,3L);
-
-        return plantActionService.getActionsForPlants(ids);
+        return plantActionService.getActionsForPlants(plantIds);
     }
 }
