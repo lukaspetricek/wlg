@@ -7,4 +7,6 @@ import java.util.List;
 public interface PlantActionRepository {
 
     List<PlantAction> findByPlantId(Long plantId);
+
+    List<PlantAction> findByPlantIds(List<Long> plantIds);
 }

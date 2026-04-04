@@ -17,12 +17,19 @@ public class PlantActionService {
 
     public List<PlantAction> getActionsForPlant(Long plantId) {
 
-        System.out.println("PlantActionRepository - getActionsForPlant - id: " + plantId);
-
         if (plantId == null || plantId == 0) {
             throw new IllegalArgumentException("Neplatné plant ID: " + plantId);
         }
 
         return plantActionRepository.findByPlantId(plantId);
+    }
+
+    public List<PlantAction> getActionsForPlants(List<Long> plantIds) {
+
+        if (plantIds == null || plantIds.isEmpty()) {
+            return List.of();
+        }
+
+        return plantActionRepository.findByPlantIds(plantIds);
     }
 }
