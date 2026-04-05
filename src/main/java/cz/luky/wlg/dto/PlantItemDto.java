@@ -8,6 +8,7 @@ import lombok.Setter;
 public class PlantItemDto {
     private String plantName;
     private String actionType;
+    private String actionDetail;
     private String note;
     private int monthFrom;
     private int monthTo;

@@ -9,8 +9,8 @@ public class PlantAction {
     private Long id;
     private String actionType;
     private String actionDetail;
+    private String note;
     private int monthFrom;
     private int monthTo;
-    private String note;
     private Long plantId;
 }
