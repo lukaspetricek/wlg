@@ -32,18 +32,6 @@ public class PlantActionRepositoryImpl implements PlantActionRepository {
 
         return jdbcTemplate.query(
                 sql,
-//                (rs, rowNum) ->
-//                {
-//                    PlantAction action = new PlantAction();
-//                    action.setId(rs.getLong("id"));
-//                    action.setActionType(rs.getString("action_type"));
-//                    action.setActionDetail(rs.getString("action_detail"));
-//                    action.setMonthFrom(rs.getInt("month_from"));
-//                    action.setMonthTo(rs.getInt("month_to"));
-//                    action.setNote(rs.getString("note"));
-//                    action.setPlantId(rs.getLong("plant_id"));
-//                    return action;
-//                },
                 rowMapper,
                 plantId
         );

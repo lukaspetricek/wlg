@@ -5,6 +5,7 @@ import cz.luky.wlg.repository.PlantRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlantService {
@@ -17,5 +18,9 @@ public class PlantService {
 
     public List<Plant> getAllPlants() {
         return plantRepository.findAll();
+    }
+
+    public Optional<Plant> getPlantById(Long plantId) {
+        return plantRepository.findById(plantId);
     }
 }

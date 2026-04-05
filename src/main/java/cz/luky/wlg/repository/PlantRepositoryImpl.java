@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class PlantRepositoryImpl implements PlantRepository {
@@ -23,6 +24,16 @@ public class PlantRepositoryImpl implements PlantRepository {
         String sql = "SELECT id, nick, name, latin_name, plant_type FROM wlg.plant";
 
         return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    @Override
+    public Optional<Plant> findById(Long id) {
+
+        String sql = "SELECT id, nick, name, latin_name, plant_type FROM wlg.plant WHERE id = ?";
+
+        return jdbcTemplate.query(sql, rowMapper, id)
+                .stream()
+                .findFirst();
     }
 
     private final RowMapper<Plant> rowMapper = (rs, rowNum) -> {
