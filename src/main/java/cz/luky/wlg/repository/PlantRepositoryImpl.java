@@ -4,6 +4,8 @@ import cz.luky.wlg.model.Plant;
 import cz.luky.wlg.model.PlantAction;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,8 +16,11 @@ public class PlantRepositoryImpl implements PlantRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public PlantRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    public PlantRepositoryImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     @Override
@@ -24,6 +29,21 @@ public class PlantRepositoryImpl implements PlantRepository {
         String sql = "SELECT id, nick, name, latin_name, plant_type FROM wlg.plant";
 
         return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    @Override
+    public List<Plant> findByIds(List<Long> plantIds) {
+
+        String sql = """
+                SELECT id, nick, name, latin_name, plant_type
+                FROM wlg.plant
+                WHERE id IN (:plantIds)
+                """;
+
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("plantIds", plantIds);
+
+        return namedParameterJdbcTemplate.query(sql, params, rowMapper);
     }
 
     @Override

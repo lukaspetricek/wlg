@@ -6,7 +6,8 @@ import cz.luky.wlg.model.PlantAction;
 
 public class PlantItemMapper {
 
-    public static PlantItemDto toDto(Plant plant, PlantAction action) {
+    public static
+    PlantItemDto toDto(Plant plant, PlantAction action) {
         PlantItemDto dto = new PlantItemDto();
         dto.setPlantName(plant.getNick());
         dto.setActionType(action.getActionType());

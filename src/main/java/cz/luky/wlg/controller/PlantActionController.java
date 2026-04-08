@@ -24,10 +24,12 @@ public class PlantActionController {
     }
 
     @GetMapping("/plantactions/{plantId}")
-    public List<PlantAction> getActionsForPlant(@PathVariable Long plantId) {
+    public String getActionsForPlant(@PathVariable Long plantId, Model model) {
 
-        //todo fix this
-        return plantActionService.getActionsForPlant(plantId);
+        model.addAttribute(plantActionService.getActionsForPlant(plantId));
+
+        //todo return all actions by months for particular plant
+        return "plant-actions";
     }
 
     @GetMapping("/plants/{plantId}")
@@ -35,6 +37,7 @@ public class PlantActionController {
 
         model.addAttribute("plantDtos", plantService.getPlantById(plantId));
 
+        //todo fix this, add jte template with detail for 1 plant
         return "plants";
     }
 

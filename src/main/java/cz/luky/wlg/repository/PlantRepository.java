@@ -8,5 +8,6 @@ import java.util.Optional;
 public interface PlantRepository {
 
     List<Plant> findAll();
+    List<Plant> findByIds(List<Long> ids);
     Optional<Plant> findById(Long id);
 }
