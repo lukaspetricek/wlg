@@ -1,11 +1,11 @@
 package cz.luky.wlg.service;
 
-import cz.luky.wlg.model.Plant;
+import cz.luky.wlg.dto.PlantDto;
+import cz.luky.wlg.mapper.PlantMapper;
 import cz.luky.wlg.repository.PlantRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlantService {
@@ -16,11 +16,16 @@ public class PlantService {
         this.plantRepository = plantRepository;
     }
 
-    public List<Plant> getAllPlants() {
-        return plantRepository.findAll();
+    public List<PlantDto> getAllPlants() {
+
+        return plantRepository.findAll()
+                .stream()
+                .map(PlantMapper::toDto)
+                .toList();
     }
 
-    public Optional<Plant> getPlantById(Long plantId) {
-        return plantRepository.findById(plantId);
+    public List<PlantDto> getPlantById(Long plantId) {
+
+        return plantRepository.findById(plantId).map(PlantMapper::toDto).stream().toList();
     }
 }

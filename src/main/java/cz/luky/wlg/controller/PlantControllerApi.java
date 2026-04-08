@@ -1,13 +1,12 @@
 package cz.luky.wlg.controller;
 
-import cz.luky.wlg.model.Plant;
+import cz.luky.wlg.dto.PlantDto;
 import cz.luky.wlg.model.PlantAction;
 import cz.luky.wlg.service.PlantActionService;
 import cz.luky.wlg.service.PlantService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -23,15 +22,15 @@ public class PlantControllerApi {
     }
 
     @GetMapping("/plants")
-    public List<Plant> getAllPlants() {
+    public List<PlantDto> getAllPlants() {
 
         return plantService.getAllPlants();
     }
 
-    @GetMapping("/plants/{plantID}")
-    public Optional<Plant> getPlant(Long id) {
+    @GetMapping("/plants/{plantId}")
+    public List<PlantDto> getPlant(@PathVariable Long plantId) {
 
-        return plantService.getPlantById(id);
+        return plantService.getPlantById(plantId);
     }
 
     @GetMapping("/plants/{plantId}/actions")
