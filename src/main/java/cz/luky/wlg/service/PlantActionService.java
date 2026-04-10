@@ -1,8 +1,5 @@
 package cz.luky.wlg.service;
 
-import cz.luky.wlg.dto.GeneratePlantResponseDto;
-import cz.luky.wlg.dto.PlantDto;
-import cz.luky.wlg.dto.PlantItemDto;
 import cz.luky.wlg.model.PlantAction;
 import cz.luky.wlg.repository.PlantActionRepository;
 import org.springframework.stereotype.Service;

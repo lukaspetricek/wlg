@@ -1,7 +1,7 @@
 @import java.util.List
 @import cz.luky.wlg.dto.PlantItemDto
 
-@param PlantItemDto plantItemDto
+@param List<PlantItemDto> plantItemDtos
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@
 
 <body>
 <div class="container">
-    <h1>Plants</h1>
+    <h1>Plant Actions</h1>
     <table border="1" cellspacing="0" cellpadding="5">
         <thead>
         <tr>
@@ -26,13 +26,14 @@
         </tr>
         </thead>
         <tbody>
-        @for(PlantDto plant : plantDtos)
+        @for(plantItemDto plant : PlantItemDtos)
             <tr>
-                <td>${plant.getId()}</td>
-                <td>${plant.getNick()}</td>
-                <td>${plant.getName()}</td>
-                <td>${plant.getLatinName()}</td>
-                <td>${plant.getPlantType()}</td>
+                <td>${plant.plantName()}</td>
+                <td>${plant.actionType()}</td>
+                <td>${plant.actionDetail()}</td>
+                <td>${plant.note()}</td>
+                <td>${plant.monthFrom()}</td>
+                <td>${plant.monthTo()}</td>
             </tr>
         @endfor
         </tbody>

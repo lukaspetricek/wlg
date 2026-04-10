@@ -1,7 +1,6 @@
 package cz.luky.wlg.controller;
 
-import cz.luky.wlg.dto.GeneratePlantResponseDto;
-import cz.luky.wlg.dto.PlantDto;
+import cz.luky.wlg.dto.MonthlyPlanResponseDto;
 import cz.luky.wlg.service.PlantPlannerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +17,8 @@ public class PlantPlannerControllerApi {
     }
 
     @GetMapping("/planer")
-    public GeneratePlantResponseDto getPlant(@RequestParam(defaultValue = "1, 2, 3") List<Long> plantIds) {
+    public List<MonthlyPlanResponseDto> getPlant(@RequestParam(defaultValue = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11") List<Long> plantIds) {
 
-        return plantPlannerService.generatePlans(plantIds);
+        return plantPlannerService.generateYearPlan(plantIds);
     }
-
 }
