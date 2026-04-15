@@ -13,29 +13,25 @@
 </head>
 
 <body>
-<div class="container">
-    <h1>Plants</h1>
-    <table border="1" cellspacing="0" cellpadding="5">
-        <thead>
+<div class="overflow-x-auto bg-white shadow rounded-lg">
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
         <tr>
-            <th>ID</th>
-            <th>Nick</th>
-            <th>Name</th>
-            <th>Latin Name</th>
-            <th>Plant Type</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">ID</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Nick</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Name</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Latin Name</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Plant Type</th>
         </tr>
         </thead>
-        <tbody>
-        @for(PlantDto plant : plantDtos)
-            <tr>
-                <td>${plant.getId()}</td>
-                <td>${plant.getNick()}</td>
-                <td>${plant.getName()}</td>
-                <td>${plant.getLatinName()}</td>
-                <td>${plant.getPlantType()}</td>
-            </tr>
-        @endfor
-        </tbody>
+        <tbody class="divide-y divide-gray-200"> @for(PlantDto plant : plantDtos)
+            <tr class="hover:bg-gray-50">
+                <td class="px-4 py-2">${plant.getId()}</td>
+                <td class="px-4 py-2">${plant.getNick()}</td>
+                <td class="px-4 py-2">${plant.getName()}</td>
+                <td class="px-4 py-2">${plant.getLatinName()}</td>
+                <td class="px-4 py-2">${plant.getPlantType()}</td>
+            </tr> @endfor </tbody>
     </table>
 </div>
 </body>
