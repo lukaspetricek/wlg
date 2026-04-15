@@ -24,7 +24,6 @@ public class PlantActionController {
 
         model.addAttribute(plantActionService.getActionsForPlant(plantId));
 
-        //todo return all actions by months for particular plant
         return "plant-actions";
     }
 

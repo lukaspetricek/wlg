@@ -16,7 +16,7 @@ public class PlantPlannerControllerApi {
         this.plantPlannerService = plantPlannerService;
     }
 
-    @GetMapping("/planer")
+    @GetMapping("/planner")
     public List<MonthlyPlanResponseDto> getPlant(@RequestParam(defaultValue = "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11") List<Long> plantIds) {
 
         return plantPlannerService.generateYearPlan(plantIds);
